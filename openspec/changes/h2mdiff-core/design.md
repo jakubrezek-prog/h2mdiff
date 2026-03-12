@@ -120,6 +120,12 @@ This is a new tool, so no migration needed. Initial release will be straightforw
 
 ## Open Questions
 
-- Should configuration also support environment variable overrides?
-- Should we support streaming for very large files, or start simple?
-- Should we provide Docker image as alternative to wrapper scripts?
+**For Phase 1 (keeping it simple):**
+- None - proceeding with straightforward implementation
+
+**For Future Phases (tracked for later consideration):**
+- Environment variable support for configuration (should env vars override config file?)
+- Streaming support for very large files (what size threshold?)
+- Docker image as deployment alternative (containerized environments)
+- GitHub Actions integration for automated releases
+- Support for authenticated/private URLs (basic auth, API keys)
