@@ -1,11 +1,13 @@
 ## 1. Project Setup and Infrastructure
 
-- [ ] 1.1 Initialize Maven project with pom.xml and standard Java directory structure
-- [ ] 1.2 Configure Maven dependencies: flexmark-java, java-diff-utils, SnakeYAML, commons-cli
-- [ ] 1.3 Set up maven-shade-plugin to create fat JAR with all dependencies included
-- [ ] 1.4 Create src/main/java directory structure: com.h2mdiff.commands, com.h2mdiff.lib, com.h2mdiff.utils
-- [ ] 1.5 Create main entry point class with command dispatcher
-- [ ] 1.6 Configure Maven to generate h2mdiff.jar as output artifact
+- [ ] 1.1 Initialize Maven project with pom.xml and standard Java 21 directory structure
+- [ ] 1.2 Configure pom.xml with Maven compiler settings (source and target: 21)
+- [ ] 1.3 Add Maven dependencies: flexmark-java, java-diff-utils, SnakeYAML, commons-cli
+- [ ] 1.4 Set up maven-shade-plugin to create fat JAR with all dependencies included
+- [ ] 1.5 Create src/main/java directory structure: com.h2mdiff.commands, com.h2mdiff.lib, com.h2mdiff.utils
+- [ ] 1.6 Create main entry point class with command dispatcher
+- [ ] 1.7 Configure Maven to generate h2mdiff.jar as output artifact
+- [ ] 1.8 Leverage Java 21 features: records for data classes, text blocks for multi-line strings where applicable
 
 ## 2. HTML Fetching Capability
 

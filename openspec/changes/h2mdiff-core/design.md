@@ -104,9 +104,22 @@ The h2mdiff project needs a well-architected pure Java CLI tool that can fetch H
 
 This is a new tool, so no migration needed. Initial release will be straightforward installation and basic usage documentation.
 
+## Technology Stack
+
+**Java Version:** Java 21
+- Target release: Java 21
+- Leverage modern Java features (records, text blocks, pattern matching, virtual threads if applicable)
+- Maven compiler target: 21
+
+**Key Dependencies:**
+- flexmark-java: HTML → Markdown conversion
+- java-diff-utils: Unified diff generation
+- SnakeYAML: YAML configuration parsing
+- Apache Commons CLI: Command-line argument parsing
+- JUnit 5: Testing framework
+
 ## Open Questions
 
 - Should configuration also support environment variable overrides?
 - Should we support streaming for very large files, or start simple?
-- What Java version to target? (recommend Java 11 LTS for broad compatibility)
 - Should we provide Docker image as alternative to wrapper scripts?
