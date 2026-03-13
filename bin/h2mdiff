@@ -16,12 +16,12 @@ JAR_NAME="h2mdiff.jar"
 
 # Search paths for the JAR (in order of preference)
 SEARCH_PATHS=(
-    "$SCRIPT_DIR/$JAR_NAME"                          # Same directory as script
-    "$SCRIPT_DIR/../lib/$JAR_NAME"                    # ../lib/ relative to script
-    "$SCRIPT_DIR/../target/$JAR_NAME"                 # ../target/ (Maven build output)
-    "/usr/local/lib/h2mdiff/$JAR_NAME"                # System-wide installation
-    "/opt/h2mdiff/$JAR_NAME"                          # Alternative system installation
-    "$HOME/.h2mdiff/$JAR_NAME"                        # User home directory
+    "$SCRIPT_DIR/../$JAR_NAME"                          # Same directory level as script (project root)
+    "$SCRIPT_DIR/../lib/$JAR_NAME"                       # ../lib/ relative to script
+    "$SCRIPT_DIR/../target/$JAR_NAME"                    # ../target/ (Maven build output)
+    "/usr/local/lib/h2mdiff/$JAR_NAME"                   # System-wide installation
+    "/opt/h2mdiff/$JAR_NAME"                             # Alternative system installation
+    "$HOME/.h2mdiff/$JAR_NAME"                           # User home directory
 )
 
 # Function to check if Java is installed
@@ -61,7 +61,7 @@ JAR_PATH=$(find_jar) || {
     done
     echo "" >&2
     echo "Installation options:" >&2
-    echo "1. Place h2mdiff.jar in the same directory as this script" >&2
+    echo "1. Place h2mdiff.jar in the project root directory (same level as bin/)" >&2
     echo "2. Place h2mdiff.jar in ../lib/ relative to this script" >&2
     echo "3. Install to /usr/local/lib/h2mdiff/ with: sudo mkdir -p /usr/local/lib/h2mdiff && sudo cp h2mdiff.jar /usr/local/lib/h2mdiff/" >&2
     echo "4. Define H2MDIFF_JAR environment variable pointing to the JAR" >&2

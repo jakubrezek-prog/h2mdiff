@@ -18,7 +18,7 @@ set "JAR_PATH="
 
 REM Search paths for the JAR (in order of preference)
 for %%P in (
-    "%SCRIPT_DIR%%JAR_NAME%"
+    "%SCRIPT_DIR%..\%JAR_NAME%"
     "%SCRIPT_DIR%..\lib\%JAR_NAME%"
     "%SCRIPT_DIR%..\target\%JAR_NAME%"
     "C:\Program Files\h2mdiff\%JAR_NAME%"
@@ -43,7 +43,7 @@ if defined H2MDIFF_JAR (
 echo Error: h2mdiff.jar not found in any of the standard locations 1>&2
 echo. 1>&2
 echo Searched in: 1>&2
-echo   - %SCRIPT_DIR%%JAR_NAME% 1>&2
+echo   - %SCRIPT_DIR%..\%JAR_NAME% 1>&2
 echo   - %SCRIPT_DIR%..\lib\%JAR_NAME% 1>&2
 echo   - %SCRIPT_DIR%..\target\%JAR_NAME% 1>&2
 echo   - C:\Program Files\h2mdiff\%JAR_NAME% 1>&2
@@ -51,7 +51,7 @@ echo   - C:\Program Files (x86)\h2mdiff\%JAR_NAME% 1>&2
 echo   - %APPDATA%\h2mdiff\%JAR_NAME% 1>&2
 echo. 1>&2
 echo Installation options: 1>&2
-echo 1. Place h2mdiff.jar in the same directory as this script 1>&2
+echo 1. Place h2mdiff.jar in the project root directory (same level as bin\) 1>&2
 echo 2. Place h2mdiff.jar in ..\lib\ relative to this script 1>&2
 echo 3. Install to C:\Program Files\h2mdiff\ and copy h2mdiff.jar there 1>&2
 echo 4. Define H2MDIFF_JAR environment variable pointing to the JAR 1>&2
