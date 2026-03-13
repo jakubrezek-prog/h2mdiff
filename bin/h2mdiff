@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# h2mdiff - HTML to Markdown Diff Utility
+# Wrapper script for Unix-like systems (Linux, macOS, etc.)
+#
+# This script locates the h2mdiff fat JAR and executes it with all provided arguments.
+# The JAR is searched for in multiple standard locations.
+
+set -e
+
+# Determine the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# JAR filename
+JAR_NAME="h2mdiff.jar"
+
+# Search paths for the JAR (in order of preference)
+SEARCH_PATHS=(
+    "$SCRIPT_DIR/../$JAR_NAME"                          # Same directory level as script (project root)
+    "$SCRIPT_DIR/../lib/$JAR_NAME"                       # ../lib/ relative to script
+    "$SCRIPT_DIR/../target/$JAR_NAME"                    # ../target/ (Maven build output)
+    "/usr/local/lib/h2mdiff/$JAR_NAME"                   # System-wide installation
+    "/opt/h2mdiff/$JAR_NAME"                             # Alternative system installation
+    "$HOME/.h2mdiff/$JAR_NAME"                           # User home directory
+)
+
+# Function to check if Java is installed
+check_java() {
+    if ! command -v java &> /dev/null; then
+        echo "Error: Java is not installed or not in PATH" >&2
+        echo "Please install Java 21 or later and ensure it's in your PATH" >&2
+        exit 1
+    fi
+}
+
+# Function to find the JAR file
+find_jar() {
+    # Check environment variable first
+    if [ -n "$H2MDIFF_JAR" ] && [ -f "$H2MDIFF_JAR" ]; then
+        echo "$H2MDIFF_JAR"
+        return 0
+    fi
+    
+    # Search standard paths
+    for path in "${SEARCH_PATHS[@]}"; do
+        if [ -f "$path" ]; then
+            echo "$path"
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Main execution
+check_java
+
+JAR_PATH=$(find_jar) || {
+    echo "Error: h2mdiff.jar not found in any of the standard locations:" >&2
+    for path in "${SEARCH_PATHS[@]}"; do
+        echo "  - $path" >&2
+    done
+    echo "" >&2
+    echo "Installation options:" >&2
+    echo "1. Place h2mdiff.jar in the project root directory (same level as bin/)" >&2
+    echo "2. Place h2mdiff.jar in ../lib/ relative to this script" >&2
+    echo "3. Install to /usr/local/lib/h2mdiff/ with: sudo mkdir -p /usr/local/lib/h2mdiff && sudo cp h2mdiff.jar /usr/local/lib/h2mdiff/" >&2
+    echo "4. Define H2MDIFF_JAR environment variable pointing to the JAR" >&2
+    exit 1
+}
+
+# Execute Java with the JAR, forwarding all arguments
+exec java -jar "$JAR_PATH" "$@"
