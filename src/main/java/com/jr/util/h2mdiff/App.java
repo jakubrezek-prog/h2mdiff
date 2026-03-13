@@ -1,5 +1,8 @@
 package com.jr.util.h2mdiff;
 
+import com.jr.util.h2mdiff.commands.FetchCommand;
+import java.io.IOException;
+
 /**
  * Main entry point for H2MDiff CLI application.
  * 
@@ -35,17 +38,28 @@ public class App {
         String command = args[0];
         String[] commandArgs = java.util.Arrays.copyOfRange(args, 1, args.length);
         
-        switch (command) {
-            case "fetch" -> System.out.println("Fetch command not yet implemented");
-            case "convert" -> System.out.println("Convert command not yet implemented");
-            case "diff" -> System.out.println("Diff command not yet implemented");
-            case "--help", "-h" -> printUsage();
-            case "--version" -> System.out.println("H2MDiff v0.1.0");
-            default -> {
-                System.err.println("Unknown command: " + command);
-                printUsage();
-                System.exit(1);
+        try {
+            switch (command) {
+                case "fetch" -> new FetchCommand(commandArgs).execute();
+                case "convert" -> System.out.println("Convert command not yet implemented");
+                case "diff" -> System.out.println("Diff command not yet implemented");
+                case "--help", "-h" -> printUsage();
+                case "--version" -> System.out.println("H2MDiff v0.1.0");
+                default -> {
+                    System.err.println("Unknown command: " + command);
+                    printUsage();
+                    System.exit(1);
+                }
             }
+        } catch (IOException e) {
+            System.err.println("✗ Error: " + e.getMessage());
+            if (e.getCause() != null) {
+                System.err.println("  Cause: " + e.getCause().getMessage());
+            }
+            System.exit(1);
+        } catch (IllegalArgumentException e) {
+            System.err.println("✗ Invalid argument: " + e.getMessage());
+            System.exit(1);
         }
     }
 

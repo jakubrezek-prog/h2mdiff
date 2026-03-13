@@ -11,15 +11,15 @@
 
 ## 2. HTML Fetching Capability
 
-- [ ] 2.1 Create HttpFetcher class using Java's HttpClient (or OkHttp if needed for advanced features)
-- [ ] 2.2 Implement URL validation and parsing with error handling
-- [ ] 2.3 Implement local file detection and reading capability
-- [ ] 2.4 Add timeout and connection error handling
-- [ ] 2.5 Create FetchCommand class with CLI argument handling
-- [ ] 2.6 Add --output flag support with default naming from URL
-- [ ] 2.7 Add --metadata flag to capture HTTP headers and fetch timestamp
-- [ ] 2.8 Implement error messages for invalid URLs, unreachable hosts, network timeouts
-- [ ] 2.9 Write unit tests for fetch command covering URLs, local files, and error cases
+- [x] 2.1 Create HttpFetcher class using Java's HttpClient (or OkHttp if needed for advanced features)
+- [x] 2.2 Implement URL validation and parsing with error handling
+- [x] 2.3 Implement local file detection and reading capability
+- [x] 2.4 Add timeout and connection error handling
+- [x] 2.5 Create FetchCommand class with CLI argument handling
+- [x] 2.6 Add --output flag support with default naming from URL
+- [x] 2.7 Add --metadata flag to capture HTTP headers and fetch timestamp
+- [x] 2.8 Implement error messages for invalid URLs, unreachable hosts, network timeouts
+- [x] 2.9 Write unit tests for fetch command covering URLs, local files, and error cases
 
 ## 3. HTML-to-Markdown Conversion Capability
 
