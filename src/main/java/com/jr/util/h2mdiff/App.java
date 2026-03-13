@@ -1,12 +1,28 @@
 package com.jr.util.h2mdiff;
 
 /**
- * H2MDiff - CLI utility for fetching HTML, converting to Markdown, and producing diffs.
+ * Main entry point for H2MDiff CLI application.
  * 
- * Main entry point for the application.
+ * H2MDiff is a command-line utility for fetching HTML pages, converting them to Markdown,
+ * and generating diffs between Markdown versions. It's designed to track and compare
+ * generated reports such as security CVE reports.
+ * 
+ * Supported commands:
+ * <ul>
+ *   <li>fetch - Retrieve HTML from URL or local file</li>
+ *   <li>convert - Convert HTML to Markdown format</li>
+ *   <li>diff - Generate diff between Markdown files</li>
+ * </ul>
  */
 public class App {
 
+    /**
+     * Main entry point for the H2MDiff application.
+     *
+     * @param args command-line arguments: &lt;command&gt; [options]
+     *             Supported commands: fetch, convert, diff
+     *             Use --help or -h to display usage information
+     */
     public static void main(String[] args) {
         System.out.println("H2MDiff v0.1.0");
         System.out.println("HTML to Markdown Diff Utility");
@@ -33,6 +49,9 @@ public class App {
         }
     }
 
+    /**
+     * Prints the usage information for H2MDiff to standard output.
+     */
     private static void printUsage() {
         String usage = """
                 Usage: h2mdiff <command> [options]
