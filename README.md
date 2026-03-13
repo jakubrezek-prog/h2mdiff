@@ -18,50 +18,75 @@ A pure Java command-line utility for fetching HTML pages, converting them to Mar
 - Check your Java version: `java -version`
 - If Java is not installed, download from [oracle.com](https://www.oracle.com/java/technologies/downloads/#java21) or use your package manager
 
-### Option 1: Quick Setup (Recommended)
+### Option 1: Quick Setup (From Repository - Recommended)
 
-1. **Get the latest h2mdiff.jar** from the target directory after building:
-   ```bash
-   mvn package
-   ```
+The repository includes wrapper scripts and a pre-built JAR. You can use it immediately:
 
-2. **Choose your platform:**
+**Linux/macOS:**
+```bash
+# Clone the repository
+git clone <repository-url>
+cd h2mdiff
 
-   **Linux/macOS:**
-   ```bash
-   # Make the wrapper executable
-   chmod +x h2mdiff
-   
-   # Copy to a directory in your PATH, or use ./h2mdiff to run locally
-   sudo cp h2mdiff /usr/local/bin/
-   
-   # Optional: Copy JAR to system location
-   sudo mkdir -p /usr/local/lib/h2mdiff
-   sudo cp target/h2mdiff.jar /usr/local/lib/h2mdiff/
-   ```
+# Make the wrapper executable
+chmod +x h2mdiff
 
-   **Windows:**
-   ```cmd
-   # Copy both files to a directory, or add to PATH
-   copy h2mdiff.bat C:\Program Files\h2mdiff\
-   copy target\h2mdiff.jar C:\Program Files\h2mdiff\
-   
-   # Then add C:\Program Files\h2mdiff to your PATH environment variable
-   ```
+# Run directly from project root
+./h2mdiff --version
 
-3. **Verify installation:**
-   ```bash
-   h2mdiff --version
-   ```
+# Or copy to your PATH
+sudo cp h2mdiff /usr/local/bin/
+sudo mkdir -p /usr/local/lib/h2mdiff
+sudo cp h2mdiff.jar /usr/local/lib/h2mdiff/
+```
 
-### Option 2: Manual Setup
+**Windows (Command Prompt):**
+```cmd
+# Clone the repository
+git clone <repository-url>
+cd h2mdiff
 
-1. Download `h2mdiff.jar` (built with `mvn package`)
-2. Place in the same directory as the wrapper script or in `../lib/`
+# Run directly
+h2mdiff.bat --version
+
+# Or copy to Program Files
+xcopy h2mdiff.bat C:\Program Files\h2mdiff\
+xcopy h2mdiff.jar C:\Program Files\h2mdiff\
+# Then add C:\Program Files\h2mdiff to your PATH
+```
+
+**Windows (PowerShell):**
+```powershell
+# Clone the repository
+git clone <repository-url>
+cd h2mdiff
+
+# Run directly
+.\h2mdiff.bat --version
+```
+
+### Option 2: Build from Source
+
+Build a fresh copy of h2mdiff.jar:
+
+```bash
+# Build the fat JAR
+mvn clean package
+
+# The JAR is created at: target/h2mdiff.jar
+
+# Copy to project root or preferred location
+cp target/h2mdiff.jar .
+```
+
+### Option 3: Manual Setup
+
+1. Download `h2mdiff.jar` from the repository or build with `mvn package`
+2. Place in the same directory as the wrapper script (h2mdiff or h2mdiff.bat)
 3. Make wrapper executable (Linux/Mac): `chmod +x h2mdiff`
-4. Run: `./h2mdiff` or `h2mdiff` (if in PATH)
+4. Run: `./h2mdiff` or `h2mdiff.bat`
 
-### Option 3: Environment Variable
+### Option 4: Environment Variable
 
 Set the `H2MDIFF_JAR` environment variable to point to your JAR:
 
@@ -216,10 +241,14 @@ Error: Java is not installed or not in PATH
 ```
 Error: h2mdiff.jar not found in any of the standard locations
 ```
-**Solution:** Either:
-- Place `h2mdiff.jar` in the same directory as the wrapper script
-- Set `H2MDIFF_JAR` environment variable
-- Copy to system location: `/usr/local/lib/h2mdiff/` (Linux/Mac) or `C:\Program Files\h2mdiff\` (Windows)
+**Solution:** The h2mdiff.jar should be in the same directory as the wrapper script. If it's missing:
+
+1. **From repository:** `h2mdiff.jar` is included - make sure you cloned/downloaded the full repository
+2. **Build from source:** `mvn clean package && cp target/h2mdiff.jar .`
+3. **Specify location:** `export H2MDIFF_JAR=/path/to/h2mdiff.jar` then run `h2mdiff`
+4. **Install system-wide:**
+   - Linux/Mac: `sudo cp h2mdiff /usr/local/bin/ && sudo mkdir -p /usr/local/lib/h2mdiff && sudo cp h2mdiff.jar /usr/local/lib/h2mdiff/`
+   - Windows: Copy both `h2mdiff.bat` and `h2mdiff.jar` to `C:\Program Files\h2mdiff\`
 
 ### Permission denied (Linux/Mac)
 ```
